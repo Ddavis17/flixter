@@ -1,0 +1,15 @@
+@import "bootstrap";
+
+.navbar {
+  font-family: "Crimson Pro", serif;
+  font-weigth: 200;
+  box-shadow: 0px 1px 3px #2a2a2a;
+  background: image_url('papyrus-dark.png');
+}
+
+.navbar-inverse a.navbar-brand  { 
+  font-family: "Crimson Pro", serif;
+  font-weight: 100;
+  font-size: 80px;
+  color: #66ff99;
+}
