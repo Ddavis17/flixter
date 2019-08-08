@@ -1,6 +1,6 @@
 class Instructor::LessonsController < ApplicationController
   before_action :authenticate_user!
-  before action :require_authorized_for_current_section
+  before_action :require_authorized_for_current_section
 
   def new
     @lesson = Lesson.new
@@ -8,7 +8,7 @@ class Instructor::LessonsController < ApplicationController
 
   def create 
     @lesson = current_section.lessons.create(lesson_params)
-    redirect_to instructor_course_path(@section.course)
+    redirect_to instructor_course_path(current_section)
   end
 
   private
