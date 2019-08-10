@@ -1,6 +1,8 @@
 <dr />
 <div class='booyah-box col-12 offset-1'>
-  <%= image_tag @course.photo, class: 'img-fluid' %>
+  <% if @course.photo.url  %>
+    <%= image_tag @course.photo.url %>
+  <% end %>
   <h1><%= @course.title %></h1>
     <br />
   <div class='row'>
