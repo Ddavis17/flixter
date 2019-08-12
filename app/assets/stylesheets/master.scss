@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 .navbar {
   font-family: "Crimson Pro", serif;
@@ -112,7 +113,9 @@ body {
 
 }
 
-
+ul {
+  list-style-type: none;
+}
 
 
 

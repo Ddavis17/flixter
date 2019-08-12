@@ -1,7 +1,15 @@
-
 <script>
   $(function() {
-    $('.lessons').sortable({});
+    $('.lessons').sortable({
+       update: function( event, ui ) {
+        $.ajax({
+          type: 'PUT',
+          url: ui.item.data('update-url'),
+          dataType: 'json',
+          data: { lesson: { row_order_position: ui.item.index() } }
+        });
+      }
+    });
   });
 </script>
 
@@ -22,11 +30,12 @@
   <ul>
     <% current_course.sections.each do |section| %>
       <li>
+         <span class="fa fa-ellipsis-v"></span>
         <%= section.title %>
         <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
         <ul class="lessons" >
-          <% section.lessons.rank(:row_order).each do |lesson| %>
-            <li>
+             <li data-update-url="<%= instructor_lesson_path(lesson) %>">
+               <span class="fa fa-ellipsis-v"></span>
               <b><%= lesson.title %></b>
               -
               <%= lesson.subtitle %>

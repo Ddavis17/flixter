@@ -87,3 +87,4 @@ gem 'stripe'
 gem 'ranked-model'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
+gem "font-awesome-rails"
