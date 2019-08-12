@@ -1,7 +1,7 @@
 <script>
   $(function() {
     $('.lessons').sortable({
-       update: function( event, ui ) {
+      update: function( event, ui ) {
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
@@ -44,6 +44,5 @@
         </ul>
         <br class="clr" />
       </li>
-    <% end %>
   </ul>
 </div>
