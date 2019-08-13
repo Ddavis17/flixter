@@ -31,7 +31,19 @@
       <%= link_to course.title, course_path(course) %>
     </h3>
 
-    <%= image_tag @course.photo.url, class: 'img-fluid' %>
+    <% if course.photo.url  %>
+      <%= image_tag course.photo.url, class: 'img-fluid' %>
+      <div class="row">
+        <div class="col-12 col-sm-8">
+          <%= course.description %>
+        </div>
+         <div class="col-12 col-sm-4 text-center">
+    
+      <%= link_to "More Info...", course_path(course), class: 'btn btn-lg btn-primary' %>
+       </div>
+  </div>
+    <% end %>
+    
   <% end %>
 
 
