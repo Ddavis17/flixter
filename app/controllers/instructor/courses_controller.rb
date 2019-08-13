@@ -19,6 +19,11 @@ class Instructor::CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def show
+    @section = Section.new
+    @lesson = Lesson.new
+  end
+
   private
 
   def before_authorized_for_current_course
