@@ -1,10 +1,9 @@
 <script>
   $(function() {
-     var lessonUrl = $('.new-lesson-button').click(function( event ) {
-      alert( $( event.target).data('lesson-url')  );
+    $('.new-lesson-button').click(function( event ) {
+      var lessonUrl = $( event.target).data('lesson-url');
       $('#newLessonForm').attr('action', lessonUrl);
     });
-
 
     $('.lessons').sortable({
       update: function( event, ui ) {
@@ -44,54 +43,41 @@
   <ul class='sections'>
     <% current_course.sections.each do |section| %>
       <li data-update-url="<%= instructor_section_path section %>" class="section-li">
-      <div class="header">
-        <span class="fa fa-ellipsis-v"></span>
-        <%= section.title %>
-      </div>
-      
+        <div class="header">
+          <span class="fa fa-ellipsis-v"></span>
+          <%= section.title %>
+        </div>
+    
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
+          New Lesson
+        </button>
 
-
-
-
-
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
-            New Lesson
-          </button>
-
-          <!-- Modal -->
-          <div class="modal fade" id="newLessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <h4 class="modal-title" id="newLessonModal">Add New Lesson</h4>
-                </div>
-                <%= simple_form_for lesson_url, url: "#", html: {id: 'newLessonForm' } do |f| %>
-                  <div class="modal-body">                  
-                    <%= f.input :title %>
-                    <%= f.input :subtitle %>
-                    <%= f.input :video %>
-                    <br />
-                    <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
-                    <br />
-                    <br />                  
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
-                  </div>
-                <% end %>
+        <!-- Modal -->
+        <div class="modal fade" id="newLessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="newLessonModal">Add New Lesson</h4>
               </div>
+              <%= simple_form_for lesson_url, url: "#", html: {id: 'newLessonForm' } do |f| %>
+                <div class="modal-body">                  
+                  <%= f.input :title %>
+                  <%= f.input :subtitle %>
+                  <%= f.submit "Add a Video", class: 'btn btn-primary' %>
+                  <br />
+                </div>                                 
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <%= f.submit "Add the lesson", class: 'btn btn-primary' %>
+                </div>
+              <% end %>
             </div>
-
-
-
-
-
-
+          </div>
+        </div>
 
         <ul class="lessons" >
           <% section.lessons.rank(:row_order).each do |lesson| %>
